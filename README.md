@@ -20,7 +20,7 @@ Finally, we apply a threshold and non-maximum suppression to obtain distinctive 
 ## Extra Points
 * +2 pts: If you make your code publicly available.
 * +2 pts: If you comment on pull request from students who fork the homework. <del>Make sure you send me a screenshot of the comments to me.</del> We can follow your discussion ourselves.
-* +2 pts: If demo in class the calculation of Ixy
+* +5 pts: If demo in class the calculation of Ixy
 * Other things that impress me.
 
 ## Writeup
