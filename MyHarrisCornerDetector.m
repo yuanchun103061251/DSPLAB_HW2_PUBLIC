@@ -73,8 +73,8 @@ imagesc(Ixy);
 % calculate R
 %%%%%
 
-%% make R value range from 0 to 1000
-R=(1000/max(max(R)))*R;%
+%% make max R value to be 1000
+R=(1000/max(max(R)))*R; % be aware of if max(R) is 0 or not
 
 %%%%%
 %% using B = ordfilt2(A,order,domain) to complment a maxfilter
@@ -96,7 +96,6 @@ count=sum(sum(RBinary(offe:size(RBinary,1)-offe,offe:size(RBinary,2)-offe))); % 
 R=R*0;
 R(offe:size(RBinary,1)-offe,offe:size(RBinary,2)-offe)=RBinary(offe:size(RBinary,1)-offe,offe:size(RBinary,2)-offe);
 [r1,c1] = find(R);
-PIP=[r1,c1]; % IP , 2d location ie.(u,v)
   
 
 %% Display
