@@ -1,3 +1,5 @@
+close all;
+clear all;
 % My Harris detector
 % The code calculates
 % the Harris Feature/Interest Points (FP or IP) 
@@ -9,7 +11,6 @@
 % points in the selected region.
 % You can select the number of FPs by changing the variables 
 % max_N & min_N
-
 
 %%%
 %corner : significant change in all direction for a sliding window
@@ -23,7 +24,7 @@ sigma=2;
 n_x_sigma = 6;
 alpha = 0.04;
 % maximum suppression related
-Thrshold=20;  % should be between 0 and 1000
+Thrshold=15;  % should be between 0 and 1000
 r=6; 
 
 
@@ -35,24 +36,21 @@ g = fspecial('gaussian',max(1,fix(2*n_x_sigma*sigma)), sigma); % Gaussien Filter
 
 
 %% load 'Im.jpg'
-frame = imread('data/Im.jpg');
+frame = imread('piano.jpg');
 I = double(frame);
 figure(1);
 imagesc(frame);
 [xmax, ymax,ch] = size(I);
 xmin = 1;
 ymin = 1;
-%I0 = zeros(xmax+2,ymax+2);
 I0(1:xmax,1:ymax) = 0.299*I(:,:,1)+ 0.587*I(:,:,2) + 0.114*I(:,:,3);
 %%%%%%%%%%%%%%Intrest Points %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-u=1;
-v=1;
 %%%%%%
 % get image gradient
 % calculate Ix
 % calcualte Iy
-Ix = zeros(xmax,ymax);
-Iy = zeros(xmax,ymax);
+%Ix = zeros(xmax,ymax);
+%Iy = zeros(xmax,ymax);
 Ix = conv2(I0,dx,'same');
 Iy = conv2(I0,dy,'same');
 %%%%%
@@ -64,7 +62,6 @@ Ix2 =conv2(Ix.*Ix,g ,'same');
 Iy2 =conv2(Iy.*Iy,g ,'same');
 % calculate Ixy
 Ixy = conv2(Ix.*Iy,g ,'same');
-%Ixy = [Ix2*g,Ix*Iy'*g;Ix*Iy'*g,Iy2*g];
 %%%%%
 
 %% visualize Ixy
@@ -72,22 +69,16 @@ figure(2);
 imagesc(Ixy);
 
 %%%%%%% Demo Check Point -------------------
-%M = [Ix2,Ixy;Ixy,Iy2];
-for x=xmin:xmax-2
-    for y=ymin:ymax-2
-        %Ix(x,y) = (I0(x+u,y)-I0(x,y));%/255;
-        %Iy(x,y) = (I0(x,y+v)-I0(x,y));%/255;
-        %M(x,y) = [x,y]*[Ix2(x,y),Ixy(x,y);Ixy(x,y),Iy2(x,y)]*[x,y]';
-        M = [Ix2(x,y),Ixy(x,y);Ixy(x,y),Iy2(x,y)];
-        R(x,y) = det(M)-alpha*trace(M)^2; 
-        
-    end
-end
 %%%%%
 % get corner response function R = det(M)-alpha*trace(M)^2 
-% [Your Code here] 
-%R = det(M)-alpha*trace(M)^2; 
 % calculate R
+% [Your Code here] 
+for x=xmin:xmax
+    for y=ymin:ymax
+        M = [Ix2(x,y),Ixy(x,y);Ixy(x,y),Iy2(x,y)];
+        R(x,y) = det(M)-alpha*trace(M)^2;      
+    end
+end
 %%%%%
 
 %% make max R value to be 1000
@@ -97,17 +88,18 @@ imagesc(R);
 
 %%%%%
 %% using B = ordfilt2(A,order,domain) to complment a maxfilter
+% calculate MX
 sze = 2*r+1; % domain width 
 % [Your Code here] 
 domain = ones(sze,sze);
-order = 1;
+order = sze*sze;
 B = ordfilt2(R,order,domain);
-% calculate MX
 %%%%%
 
 %%%%%
 % find local maximum.
 % [Your Code here] 
+RBinary = (B==R)&(B>Thrshold);
 % calculate RBinary
 %%%%%
 
@@ -126,13 +118,5 @@ imagesc(uint8(I));
 hold on;
 plot(c1,r1,'or');
 return;
+%imwrite(I, 'use_flag_corner.jpg', 'quality', 95);
 %trash
-for x=xmin:xmax-2
-    for y=ymin:ymax-2
-        %Ix(x,y) = (I0(x+u,y)-I0(x,y));%/255;
-        %Iy(x,y) = (I0(x,y+v)-I0(x,y));%/255;
-        Ix(x,y) = sum(sum(I0(x:x+2,y:y+2).*dx));
-        Iy(x,y) = sum(sum(I0(x:x+2,y:y+2).*dy));
-    end
-end
-%}
