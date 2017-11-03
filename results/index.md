@@ -47,25 +47,68 @@ The project is related to
 8. circle all the corners on the image
 
 ### Results
-
+* result1  <br />
+from left to right: house_origin, house_corner
 <table border=1>
 <tr>
 <td>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg"  width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
+<img src="/data/Im.jpg" width="48%"/>
+<img src="/house_corner.jpg" width="48%"/>
 </td>
 </tr>
-
-<tr>
-<td>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg"  width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
-</td>
-</tr>
-
 </table>
 
+* result2  <br />
+from left to right: use_flag, usa_flag_corner
+<table border=1>
+<tr>
+<td>
+<img src="/usa_flag.png" width="48%"/>
+<img src="/usa_flag_corner.jpg" width="48%"/>
+</td>
+</tr>
+</table>
+
+* result3  <br />
+from left to right: piano, piano_corner
+<table border=1>
+<tr>
+<td>
+<img src="/piano.jpg" width="48%"/>
+<img src="/piano_corner.jpg" width="48%"/>
+</td>
+</tr>
+</table>
+
+* result4  <br />
+from left to right: game_of_go, game_of_go_corner
+<table border=1>
+<tr>
+<td>
+<img src="/game_of_go.jpg" width="48%"/>
+<img src="/game_of_go_corner.jpg" width="48%"/>
+</td>
+</tr>
+</table>
+
+* result5  <br />
+from left to right: use_flag, usa_flag_high_threshold_corner
+<table border=1>
+<tr>
+<td>
+<img src="/roc_flag.jpg" width="48%"/>
+<img src="/roc_flag_high_threshold_corner.jpg" width="48%"/>
+</td>
+</tr>
+</table>
+
+* result5  <br />
+from left to right: use_flag, usa_flag_low_threshold_corner
+<table border=1>
+<tr>
+<td>
+<img src="/roc_flag.jpg" width="48%"/>
+<img src="/roc_flag_low_threshold_corner.jpg" width="48%"/>
+</td>
+</tr>
+</table>
