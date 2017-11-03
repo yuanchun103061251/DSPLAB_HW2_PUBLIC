@@ -1,4 +1,4 @@
-# Your Name <span style="color:red">(yout cs id)</span>
+# 103061251 羅元均 <span style="color:red"></span>
 
 # Project 1 / Image Filtering and Hybrid Images
 
@@ -52,7 +52,7 @@ from left to right: house_origin, house_corner
 <table border=1>
 <tr>
 <td>
-<img src="/data/Im.jpg" width="48%"/>
+<img src="/house.jpg" width="48%"/>
 <img src="/house_corner.jpg" width="48%"/>
 </td>
 </tr>
@@ -102,7 +102,7 @@ from left to right: use_flag, usa_flag_high_threshold_corner
 </tr>
 </table>
 
-* result5  <br />
+* result6  <br />
 from left to right: use_flag, usa_flag_low_threshold_corner
 <table border=1>
 <tr>
@@ -112,3 +112,7 @@ from left to right: use_flag, usa_flag_low_threshold_corner
 </td>
 </tr>
 </table>
+
+### Discussion
+
+sometimes, we need to adjust threshold value for different images. in result5 and result6, the high threshold value and low threshold value is 20 and 5, respectively. the difference is at the edge between blue and red. there is a red circle when threshold=5 which does not exsist when threshold=20. as a result, we need to come up with a dynamic way to adjust theshold vlaue if we want to detect corners precisely.
